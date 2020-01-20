@@ -1,0 +1,37 @@
+{
+  "name": "react-native-three-step-bottom-drawer",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"demo.gif\" alt=\"Demo gif\" width=\"300\" /> </p>",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehbasouri/react-native-three-step-bottom-drawer.git"
+  },
+  "keywords": [
+    "react-native",
+    "drawer",
+    "react",
+    "three-step",
+    "action sheet"
+  ],
+  "author": "ehbasouri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehbasouri/react-native-three-step-bottom-drawer/issues"
+  },
+  "homepage": "https://github.com/ehbasouri/react-native-three-step-bottom-drawer#readme",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.51.0",
+    "react": "^16.6.3",
+    "react-native": "^0.57.8"
+  }
+}
