@@ -94,6 +94,7 @@ export default class BottomDrawer extends Component{
   render() {   
     return (
       <Animator 
+        closedrawer={this.props.closedrawer}
         currentPosition = {this.state.currentPosition}
         setCurrentPosition = {(position) => this.setCurrentPosition(position)}
         toggleThreshold = {this.TOGGLE_THRESHOLD}
@@ -104,9 +105,10 @@ export default class BottomDrawer extends Component{
         shadow = {this.props.shadow}
         containerHeight = {this.props.containerHeight}
         backgroundColor = {this.props.backgroundColor}
-        onExpanded = {() => this.props.onExpanded()}
-        onCollapsed = {() => this.props.onCollapsed()}
+        onExpanded = {this.props.onExpanded}
+        onCollapsed = {this.props.onCollapsed}
         hasMid={this.props.hasMid}
+        animateEnabled={this.props.animateEnabled}
       >
         {this.props.children}
 
@@ -129,14 +131,14 @@ export default class BottomDrawer extends Component{
   _calculateDownPosition(upPosition, downDisplay) {
     return { 
       x: 0,
-      y: upPosition.y + downDisplay + 100
+      y: SCREEN_HEIGHT - this.props.downHeight
     };
   }
 
   _calculateMidPosition(upPosition, downPosition){
     return {
       x: 0,
-      y: Math.round(Math.floor((downPosition.y + upPosition.y)/ 2))
+      y: Math.round(Math.floor(downPosition.y - this.props.midHeight + this.props.downHeight))
     }
   }
 }

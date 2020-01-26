@@ -13,9 +13,8 @@ const MID_AREA = 100;
 export default class Animator extends Component{
   constructor(props){
     super(props);
-    
+    this.currentState= "down"
     this.position = new Animated.ValueXY(this.props.currentPosition);
-
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: this._handlePanResponderMove,
@@ -23,7 +22,18 @@ export default class Animator extends Component{
     });
   }
 
+  componentDidUpdate(preProps){
+    if (preProps.closedrawer != this.props.closedrawer && this.props.closedrawer) {
+      this.currentState="down"
+      this._transitionTo(this.props.downPosition, ()=>this.props.onCollapsed(this.currentState));  
+    }
+  }
+
   render() {
+    var isPanResponder = {}
+    if (this.props.animateEnabled) {
+      isPanResponder = this._panResponder.panHandlers
+    }
     return (
       <Animated.View 
         style={[
@@ -34,7 +44,8 @@ export default class Animator extends Component{
             styles.shadow(this.props.shadow)
           ])
         ]}
-        {...this._panResponder.panHandlers}
+        {...isPanResponder}
+
       >
         {this.props.children}
       </Animated.View>
@@ -56,15 +67,19 @@ export default class Animator extends Component{
     // } else 
     if (gesture.dy > this.props.toggleThreshold && this.props.currentPosition !== this.props.downPosition) {
       if (this.props.currentPosition === this.props.upPosition && this.props.hasMid ) {
-        this._transitionTo(this.props.midPosition, this.props.onCollapsed);   
+        this.currentState = "middle"
+        this._transitionTo(this.props.midPosition, ()=>this.props.onCollapsed(this.currentState));   
       } else {
-        this._transitionTo(this.props.downPosition, this.props.onCollapsed);   
+        this.currentState = "down"
+        this._transitionTo(this.props.downPosition, ()=>this.props.onCollapsed(this.currentState));  
       }
     } else if (gesture.dy < -this.props.toggleThreshold && this.props.currentPosition !== this.props.upPosition) {
       if (this.props.currentPosition === this.props.downPosition && this.props.hasMid ) {
-        this._transitionTo(this.props.midPosition, this.props.onExpanded);
+        this.currentState = "middle"
+        this._transitionTo(this.props.midPosition, ()=>this.props.onExpanded(this.currentState));
       } else {
-        this._transitionTo(this.props.upPosition, this.props.onExpanded);
+        this.currentState = "up"
+        this._transitionTo(this.props.upPosition, ()=>this.props.onExpanded(this.currentState));
       }
     } else {
       this._resetPosition();

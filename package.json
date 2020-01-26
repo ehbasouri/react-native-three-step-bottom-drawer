@@ -1,6 +1,6 @@
 {
   "name": "react-native-three-step-bottom-drawer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "<p align=\"center\">   <img src=\"demo.gif\" alt=\"Demo gif\" width=\"300\" /> </p>",
   "main": "index.js",
   "directories": {

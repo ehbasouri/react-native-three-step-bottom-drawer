@@ -65,4 +65,8 @@ export default class App extends React.Component {
 | shadow | bool | true | if **true**, the top of the drawer will have a shadow. |
 | onExpanded | func | -- | A callback function triggered when the drawer is swiped into up position |
 | onCollapsed | func | -- | A callback function triggered when the drawer is swiped into down position |
+| hasMid | bool | -- | condition for have midd level height |
+| downHeight | number | -- | height of drawer in bottom state |
+| midHeight | number | -- | height of drawer in middle level |
+| closedrawer | bool | -- | if is true close drawer |
 
