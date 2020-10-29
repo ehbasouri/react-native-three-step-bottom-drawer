@@ -17,7 +17,7 @@ export default class Animator extends Component{
     this.position = new Animated.ValueXY(this.props.currentPosition);
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: this._handlePanResponderMove,
+      onResponderMove: this._handlePanResponderMove,
       onPanResponderRelease: this._handlePanResponderRelease
     });
   }
